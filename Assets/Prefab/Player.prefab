@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055640144320388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: -0.36, y: 2.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,10 +56,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -91,7 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c20b706c13474ecda8331466b94ae8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 10
+  inputSmoothTime: 1
 --- !u!114 &114635362498451478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,8 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed862665b52964e37b010f796596b7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractorPlanet: {fileID: 114790605550035546, guid: 0890b91b821b74ed394920f56cbd0ae2,
-    type: 2}
+  attractorPlanet: {fileID: 0}
 --- !u!212 &212559102985833012
 SpriteRenderer:
   m_ObjectHideFlags: 1

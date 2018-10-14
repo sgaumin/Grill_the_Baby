@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour {
 	void Update () {
 		if (_canShoot) {
 			if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetButton("Jump")) {
+                // TO DO: Change bullet spawn
 				Instantiate (bullet, gameObject.transform.position, gameObject.transform.rotation);
 				_canShoot = false;
 			}

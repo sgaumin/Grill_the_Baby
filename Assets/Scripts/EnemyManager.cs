@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
@@ -11,7 +10,7 @@ public class EnemyManager : MonoBehaviour {
 	public GameObject bullet;
 
 	private Rigidbody2D _RB;
-	private Vector2 _pos;
+	private Vector2 _target;
 	// private Vector2 _minBound;
 	// private Vector2 _maxBound;
 	private PlayerManager _PM;
@@ -21,7 +20,7 @@ public class EnemyManager : MonoBehaviour {
 		movingArea.gameObject.SetActive (true);
 		_RB = GetComponent<Rigidbody2D> ();
 		_PM = FindObjectOfType<PlayerManager> ();
-		_pos = Vector2.zero;
+        _target = Vector2.zero;
 		// _minBound = movingArea.bounds.min;
 		// _maxBound = movingArea.bounds.max;
 
@@ -29,21 +28,29 @@ public class EnemyManager : MonoBehaviour {
 		StartCoroutine (Shoot (waitForReload));
 	}
 
-	void Update(){
-		Debug.DrawLine (gameObject.transform.position, _PM.gameObject.transform.position);
-	}
-
 	IEnumerator Move(float wait){
 		while (true) {
-			
-			_pos = new Vector2 (Random.Range (-1f, 1f) * moveSpeed, Random.Range (-1f, 1f) * moveSpeed);
-			/*if ( (transform.position.x + _pos.x) >  _maxBound.x || (transform.position.x -_pos.x) <  _minBound.x || (transform.position.y + _pos.y) > _maxBound.y || (transform.position.y - _pos.y) < _minBound.y) {
+
+            _target = new Vector2 (Random.Range (-1f, 1f) * moveSpeed, Random.Range (-1f, 1f) * moveSpeed);
+
+            /*if ( (transform.position.x + _pos.x) >  _maxBound.x || (transform.position.x -_pos.x) <  _minBound.x || (transform.position.y + _pos.y) > _maxBound.y || (transform.position.y - _pos.y) < _minBound.y) {
 				_pos = Vector2.zero;
 			}*/
 
-			yield return new WaitForSeconds(Random.Range(wait * 0.5f, wait));
-			//_isMoving = false;
-			_pos = Vector2.zero;
+            float alea = Random.Range(wait * 0.5f, wait);
+            Vector2 _finalTarget = alea * _target;
+
+            Vector2 _finalPos = new Vector2(transform.position.x, transform.position.y);
+
+            _finalPos += _finalTarget;
+
+            if (!movingArea.bounds.Contains(_finalPos))
+            {
+                _target = Vector2.zero;
+            }
+ 
+            yield return new WaitForSeconds(alea);
+            _target = Vector2.zero;
 			yield return new WaitForSeconds(Random.Range(wait * 0.5f, wait));
 		}
 	}
@@ -56,10 +63,7 @@ public class EnemyManager : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		// Debug.Log (movingArea.ClosestPointOnBounds(gameObject.transform.position));	
-		// Debug.Log (_minBound);
-		// Debug.Log (_maxBound);
-		_RB.velocity =  _pos;
+		_RB.velocity = _target;
 
 	}
 

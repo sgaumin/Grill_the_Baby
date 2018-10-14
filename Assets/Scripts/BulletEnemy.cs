@@ -28,6 +28,6 @@ public class BulletEnemy : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		_RB.velocity = _pos * moveSpeed;
+		_RB.velocity = _pos.normalized * moveSpeed;
 	}
 }

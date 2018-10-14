@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerGravityBody : MonoBehaviour {
 
@@ -9,8 +7,8 @@ public class PlayerGravityBody : MonoBehaviour {
 
     void Start()
     {
-        //GetComponent<Rigidbody>().useGravity = false;
-        //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints.FreezeRotation;
+        //GetComponent<Rigidbody2D>().useGravity = false;
+        //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
 
         playerTransform = transform;
     }
